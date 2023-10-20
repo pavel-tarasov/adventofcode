@@ -40,7 +40,7 @@ class Device:
 
 device = Device()
 
-with open("../inputs/day_10.txt") as file:
+with open("day_10.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":

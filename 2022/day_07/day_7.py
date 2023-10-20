@@ -47,7 +47,7 @@ def best_to_remove(node: Directory, desired_space, top_size):
         return top_size
 
 
-with open("../inputs/day_7.txt") as file:
+with open("day_7.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":

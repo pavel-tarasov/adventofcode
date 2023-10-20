@@ -59,7 +59,7 @@ line_1 = None
 line_2 = None
 line_3 = None
 i = 1
-with open("../inputs/day_3.txt") as file:
+with open("day_3.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":

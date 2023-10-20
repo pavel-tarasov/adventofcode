@@ -54,7 +54,7 @@ def define_move_2(move_1, desired_result):
 
 score_strategy_1 = 0
 score_strategy_2 = 0
-with open("../inputs/day_2.txt") as file:
+with open("day_2.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":

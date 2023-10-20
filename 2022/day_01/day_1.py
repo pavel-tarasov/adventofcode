@@ -1,6 +1,6 @@
 food = {}
 current_elf = 1
-with open("../inputs/day_1.txt") as file:
+with open("day_1.txt") as file:
     while True:
         line = file.readline()
 

@@ -25,7 +25,7 @@ class CPU:
 
 
 cpu = CPU([20, 60, 100, 140, 180, 220])
-with open("../inputs/day_10.txt") as file:
+with open("day_10.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":

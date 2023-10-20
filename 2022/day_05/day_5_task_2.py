@@ -1,9 +1,14 @@
 import queue
 
 
-def move(stack_from, stack_to):
-    val = stacks[stack_from - 1].get()
-    stacks[stack_to - 1].put(val)
+def move(stack_from, stack_to, number):
+    tmp_stack = queue.LifoQueue()
+    for i in range(number):
+        val = stacks[stack_from - 1].get()
+        tmp_stack.put(val)
+    for i in range(number):
+        val = tmp_stack.get()
+        stacks[stack_to - 1].put(val)
 
 
 def put_in_stack(index, val):
@@ -11,7 +16,6 @@ def put_in_stack(index, val):
         stacks[index].put(val)
 
 
-task_1_result = 0
 task_2_result = 0
 
 stacks = [
@@ -27,7 +31,7 @@ stacks = [
 ]
 stack_lines = []
 reading_moves = False
-with open("../inputs/day_5.txt") as file:
+with open("day_5.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":
@@ -66,12 +70,10 @@ with open("../inputs/day_5.txt") as file:
             stack_lines.append(line)
 
         if reading_moves:
-            _, moves, _, stack_from, _, stack_to = line.split(" ")
-            # print(moves, stack_from, stack_to)
-            for i in range(int(moves)):
-                move(int(stack_from), int(stack_to))
+            _, number, _, stack_from, _, stack_to = line.split(" ")
+            move(int(stack_from), int(stack_to), int(number))
 
-task_1_result = (
+task_2_result = (
     stacks[0].get()
     + stacks[1].get()
     + stacks[2].get()
@@ -82,5 +84,4 @@ task_1_result = (
     + stacks[7].get()
     + stacks[8].get()
 )
-print(f"task 1 result: {task_1_result}")
 print(f"task 2 result: {task_2_result}")

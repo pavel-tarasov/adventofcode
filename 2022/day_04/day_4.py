@@ -1,6 +1,6 @@
 sum_1 = 0
 sum_2 = 0
-with open("../inputs/day_4.txt") as file:
+with open("day_4.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":

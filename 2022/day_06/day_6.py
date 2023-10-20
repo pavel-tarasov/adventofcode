@@ -3,7 +3,7 @@ from collections import deque
 task_1_result = 0
 task_2_result = 0
 
-with open("../inputs/day_6.txt") as file:
+with open("day_6.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":

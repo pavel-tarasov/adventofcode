@@ -37,7 +37,7 @@ class Monkey:
 
 monkeys = {}
 all_divisors_product = 1
-with open("../inputs/day_11.txt") as file:
+with open("day_11.txt") as file:
     while True:
         lines = []
         lines.append(file.readline().replace("\n", ""))

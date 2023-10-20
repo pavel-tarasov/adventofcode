@@ -1,7 +1,7 @@
-task_1_result = 0
+task_2_result = 0
 
 grid = []
-with open("../inputs/day_8.txt") as file:
+with open("day_8.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":
@@ -11,43 +11,42 @@ with open("../inputs/day_8.txt") as file:
 
 y_max = len(grid)
 x_max = len(grid[0])
+scenic_score = []
 for i in range(y_max):
     for j in range(x_max):
-        # edge
-        if i in (0, y_max - 1) or j in (0, x_max - 1):
-            task_1_result += 1
-            continue
-
         # up
+        visible_up = 0
         for k in reversed(range(i)):
             if grid[i][j] > grid[k][j]:
-                visible_up = True
+                visible_up += 1
             else:
-                visible_up = False
+                visible_up += 1
                 break
         # down
+        visible_down = 0
         for k in range(i + 1, y_max):
             if grid[i][j] > grid[k][j]:
-                visible_down = True
+                visible_down += 1
             else:
-                visible_down = False
+                visible_down += 1
                 break
         # left
+        visible_left = 0
         for k in reversed(range(j)):
             if grid[i][j] > grid[i][k]:
-                visible_left = True
+                visible_left += 1
             else:
-                visible_left = False
+                visible_left += 1
                 break
         # right
+        visible_right = 0
         for k in range(j + 1, x_max):
             if grid[i][j] > grid[i][k]:
-                visible_right = True
+                visible_right += 1
             else:
-                visible_right = False
+                visible_right += 1
                 break
 
-        if visible_up or visible_down or visible_left or visible_right:
-            task_1_result += 1
+        scenic_score.append(visible_up * visible_down * visible_left * visible_right)
 
-print(f"task 1 result: {task_1_result}")
+print(f"task 2 result: {max(scenic_score)}")

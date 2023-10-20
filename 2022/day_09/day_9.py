@@ -92,7 +92,7 @@ class Rope:
 
 rope_2 = Rope(2)
 rope_10 = Rope(10)
-with open("../inputs/day_9.txt") as file:
+with open("day_9.txt") as file:
     while True:
         line = file.readline().replace("\n", "")
         if line == "":
