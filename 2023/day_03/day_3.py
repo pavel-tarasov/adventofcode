@@ -1,26 +1,3 @@
-CHARS = [
-    33,
-    34,
-    35,
-    36,
-    37,
-    38,
-    39,
-    40,
-    41,
-    42,
-    43,
-    44,
-    45,
-    47,
-    58,
-    59,
-    60,
-    61,
-    62,
-    63,
-    64,
-]
 NUMBERS = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
 DOT = 46
 
@@ -69,8 +46,6 @@ with open("input.txt") as file:
         current_number_digits = []
         current_number_start = None
         for j, char in enumerate(line, start=1):
-            if ord(char) >= 65:
-                raise Exception("There is letters")
             if ord(char) == DOT:
                 if current_number_start:
                     number_objects.append(
@@ -83,7 +58,11 @@ with open("input.txt") as file:
                     )
                     current_number_digits = []
                     current_number_start = None
-            if ord(char) in CHARS:
+            elif ord(char) in NUMBERS:
+                current_number_digits.append(char)
+                if not current_number_start:
+                    current_number_start = j
+            else:
                 if current_number_start:
                     number_objects.append(
                         Number(
@@ -96,10 +75,7 @@ with open("input.txt") as file:
                     current_number_digits = []
                     current_number_start = None
                 char_objects.append(Char(char=char, position=j, line_number=i))
-            if ord(char) in NUMBERS:
-                current_number_digits.append(char)
-                if not current_number_start:
-                    current_number_start = j
+
         if current_number_start:
             number_objects.append(
                 Number(
