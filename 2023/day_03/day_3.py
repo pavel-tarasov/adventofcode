@@ -36,7 +36,6 @@ char_objects = []
 with open("input.txt") as file:
     while True:
         i += 1
-        previous_line = line
         line = file.readline().rstrip("\n")
 
         if line == "":
@@ -52,7 +51,7 @@ with open("input.txt") as file:
                         Number(
                             digits=current_number_digits,
                             start_position=current_number_start,
-                            end_position=j,
+                            end_position=j - 1,
                             line_number=i,
                         )
                     )
@@ -68,7 +67,7 @@ with open("input.txt") as file:
                         Number(
                             digits=current_number_digits,
                             start_position=current_number_start,
-                            end_position=j,
+                            end_position=j - 1,
                             line_number=i,
                         )
                     )
@@ -88,7 +87,6 @@ with open("input.txt") as file:
 
 selected_numbers = []
 for number_object in number_objects:
-    # print(number_object)
     for char_object in char_objects:
         if char_object.line_number in range(
             number_object.line_number - 1, number_object.line_number + 2
@@ -98,9 +96,20 @@ for number_object in number_objects:
             selected_numbers.append(number_object)
             break
 
-for number in selected_numbers:
-    print(number)
+gears = []
+for char_object in char_objects:
+    if char_object.char == "*":
+        neighbours = []
+        for number_object in number_objects:
+            if char_object.line_number in range(
+                number_object.line_number - 1, number_object.line_number + 2
+            ) and char_object.position in range(
+                number_object.start_position - 1, number_object.end_position + 2
+            ):
+                neighbours.append(number_object)
+        if len(neighbours) == 2:
+            gears.append(neighbours[0].value * neighbours[1].value)
+
 
 print(f"task 1 result: {sum([number.value for number in selected_numbers])}")
-# 554313 too high
-# print(f"task 2 result: {}")
+print(f"task 2 result: {sum(gears)}")
