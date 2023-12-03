@@ -39,7 +39,7 @@ class Number:
         self.line_number = line_number
 
     def __str__(self):
-        return f"{self.value} ({self.start_position}-{self.end_position}:{self.line_number})"
+        return f"{self.value} ({self.line_number}:{self.start_position}-{self.end_position})"
 
 
 class Char:
@@ -49,7 +49,7 @@ class Char:
         self.line_number = line_number
 
     def __str__(self):
-        return f"{self.char} ({self.position}:{self.line_number})"
+        return f"{self.char} ({self.line_number}:{self.position})"
 
 
 line = ""
