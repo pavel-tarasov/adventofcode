@@ -26,27 +26,14 @@ with open("input.txt") as file:
         else:
             updates.append(list(map(int, line.split(","))))
 
-bad_updates = []
-for update in updates:
-    pages_before = set()
-    for j, page in enumerate(update):
-        if ordering_rules.get(page):
-            pages_expected_after = ordering_rules[page]
-            if pages_expected_after.intersection(pages_before) != set():
-                bad_updates.append(update)
-                break
-        pages_before.add(page)
 
-new_updates = []
-for i, update in enumerate(bad_updates):
-    print(update)
+for update in updates:
+    is_fixed = False
     new_update = []
     pages_before = dict()
     for j, page in enumerate(update):
-        print(page)
         if ordering_rules.get(page):
             pages_expected_after = ordering_rules[page]
-            print(pages_expected_after)
             wrong_pages = {
                 new_page: k
                 for k, new_page in enumerate(new_update)
@@ -55,16 +42,12 @@ for i, update in enumerate(bad_updates):
             if wrong_pages != {}:
                 left_position = min(wrong_pages.values())
                 new_update.insert(left_position, page)
+                is_fixed = True
                 continue
         new_update.append(page)
         pages_before[page] = j
-    new_updates.append(new_update)
-
-print("------------")
-print("new updates:")
-for update in new_updates:
-    print(update)
-    assert len(update) % 2 == 1
-    result += update[len(update) // 2]
+    if is_fixed:
+        assert len(new_update) % 2 == 1
+        result += new_update[len(new_update) // 2]
 
 print(f"task 2 result: {result}")
